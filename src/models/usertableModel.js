@@ -22,17 +22,19 @@ const userSchema = new Schema({
     email:{
         type:String,
         required:  'type a valid email',
-        // unique:true,
-        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/]
-        // match: [^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/] 
+        match: [/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/],
+        unique: true,
+        
     },
     password:{
         type:String,
-        required:  'password is not valid'
+        required:  'password is not valid',
+        match:/^[A-Za-z]\w{7,14}$/
     },
     confirmpassword:{
         type:String,
-        required:  'password not matching'
+        required:  'password not matching',
+        match:/^[A-Za-z]\w{7,14}$/
     },
     
 });
@@ -44,3 +46,19 @@ export default userSchema;
 
 
 
+
+
+
+// exports.addNewDownload=(req, res)=> {
+//     const reg= /^[a-zA-Z0-9!@#$%^&*]{4,8}$/;
+//     if(reg.test(req.body.Password))
+//     {
+//     if(req.body.Password === req.body. ConfirmPassword){
+//     req.body.Password = cryptr.encrypt(req.body.Password);
+//     req.body. ConfirmPassword = cryptr.encrypt(req.body.ConfirmPassword);
+//     }
+//     } 
+//     else{
+//     req.body.Password ="";
+//     }
+ 

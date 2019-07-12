@@ -2,12 +2,13 @@ import { addNewUser, getUsers, getUser, updateUser, deleteUser } from '../contro
 const { check, validationResult  } = require('express-validator/check')
 
 const routes = (app) => {
-    app.route('/access')
+    app.route('/login')
         .get(getUsers)
-        // .post(addNewUser)
-
-
-        app.post('/access', [
+        .delete(deleteUser)
+        
+    app.route('/signup')
+    .post(addNewUser)
+        app.post('/login', [
             check('firstname').isEmpty().trim(),
             check('lastname').isEmpty().trim(),
             check('email').isEmpty().trim(),
@@ -31,7 +32,7 @@ const routes = (app) => {
     app.route('/access/:id')
         .get(getUser)
         .put(updateUser)
-        .delete(deleteUser)
+       
 }
  
 export default routes
